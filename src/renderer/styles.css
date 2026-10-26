@@ -1,0 +1,926 @@
+/* ==========================================================================
+   AstraForx // Cosmic Terminal-Inspired Fluidic Modern Theme
+   ========================================================================== */
+
+:root {
+  --bg-void: #06070a;
+  --bg-surface: #0a0c12;
+  --bg-card: #0f121b;
+  --bg-elevated: #151926;
+  --bg-hover: rgba(0, 240, 255, 0.06);
+  --bg-active: rgba(0, 240, 255, 0.12);
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-glow: rgba(0, 240, 255, 0.25);
+  --border-cyan: #00f0ff;
+  --border-violet: #a855f7;
+
+  --accent-cyan: #00f0ff;
+  --accent-violet: #9d4edd;
+  --accent-green: #00ff9d;
+  --accent-amber: #f59e0b;
+  --accent-rose: #ff3366;
+
+  --text-main: #f1f5f9;
+  --text-muted: #79869c;
+  --text-dim: #434c5e;
+  --text-code: #00f0ff;
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --glow-cyan: 0 0 12px rgba(0, 240, 255, 0.35);
+  --glow-violet: 0 0 14px rgba(157, 78, 221, 0.35);
+  --glow-green: 0 0 8px rgba(0, 255, 157, 0.5);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+
+  --anim-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-void);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  user-select: none;
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+/* ==========================================================================
+   1. Titlebar & System Telemetry
+   ========================================================================== */
+
+#titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 27px;
+  padding: 0 8px 0 10px;
+  background: var(--bg-void);
+  border-bottom: 1px solid var(--border-subtle);
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+}
+
+#brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.astra-symbol {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.core-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: var(--glow-cyan);
+}
+
+.ring-pulse {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--accent-cyan);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse-ring 2.4s infinite ease-out;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  50% { transform: scale(1.15); opacity: 0.25; }
+  100% { transform: scale(0.6); opacity: 0.9; }
+}
+
+.brand-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+.brand-dim {
+  color: var(--accent-cyan);
+  margin: 0 1px;
+}
+.brand-accent {
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.telemetry-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+.tui-pill {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tui-online {
+  color: var(--accent-green);
+  border-color: rgba(0, 255, 157, 0.25);
+  background: rgba(0, 255, 157, 0.05);
+}
+
+.status-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: var(--glow-green);
+  animation: blink 2.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.tui-eng {
+  color: var(--accent-violet);
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+.tui-incognito {
+  color: #c084fc;
+  border-color: rgba(192, 132, 252, 0.45);
+  background: rgba(192, 132, 252, 0.12);
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+body.incognito-mode {
+  --accent-cyan: #c084fc;
+  --border-cyan: #a855f7;
+  --border-glow: rgba(192, 132, 252, 0.3);
+  --glow-cyan: 0 0 12px rgba(192, 132, 252, 0.45);
+  --text-code: #c084fc;
+}
+
+body.incognito-mode #app {
+  background: #090612;
+}
+
+body.incognito-mode #titlebar {
+  background: #05030b;
+}
+
+body.incognito-mode .tab.active::before {
+  background: linear-gradient(90deg, #c084fc, #ec4899);
+}
+
+#drag-region {
+  flex: 1;
+  height: 100%;
+}
+
+#win-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+}
+
+.win-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 28px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  transition: all var(--anim-fast);
+  -webkit-app-region: no-drag;
+}
+
+.win-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.win-btn.win-close:hover {
+  background: var(--accent-rose);
+  color: #fff;
+}
+
+/* ==========================================================================
+   2. Tabstrip Row & Tab Styling
+   ========================================================================== */
+
+#tabstrip-row {
+  display: flex;
+  align-items: center;
+  height: 31px;
+  padding: 2px 8px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+#tabstrip {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#tabstrip::-webkit-scrollbar {
+  display: none;
+}
+
+#tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100% - 36px);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 25px;
+  padding: 0 8px;
+  min-width: 110px;
+  max-width: 200px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--anim-fast);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tab:hover {
+  background: var(--bg-hover);
+  border-color: rgba(0, 240, 255, 0.25);
+  color: var(--text-main);
+}
+
+.tab.active {
+  background: var(--bg-card);
+  border-color: var(--border-cyan);
+  color: #fff;
+  box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.08), 0 0 8px rgba(0, 240, 255, 0.15);
+}
+
+.tab.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
+  box-shadow: var(--glow-cyan);
+}
+
+/* Pinned Tabs */
+.tab.pinned {
+  min-width: 38px;
+  max-width: 48px;
+  padding: 0 6px;
+  justify-content: center;
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.tab.pinned .tab-title,
+.tab.pinned .tab-close {
+  display: none;
+}
+.tab.pinned .pin-glyph {
+  font-size: 10px;
+  color: var(--accent-violet);
+  margin-right: 2px;
+}
+
+.tab-idx {
+  font-size: 9px;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+.tab.active .tab-idx {
+  color: var(--accent-cyan);
+}
+
+.tab-favicon {
+  width: 13px;
+  height: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.tab-favicon.spin {
+  border: 1.5px solid rgba(0, 240, 255, 0.2);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.tab-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+/* Audio Indicator */
+.tab-audio-icon {
+  font-size: 10px;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  padding: 1px 3px;
+  border-radius: var(--radius-xs);
+  opacity: 0.85;
+  transition: all var(--anim-fast);
+}
+.tab-audio-icon:hover {
+  background: rgba(0, 240, 255, 0.15);
+  opacity: 1;
+}
+.tab-audio-icon.muted {
+  color: var(--text-dim);
+}
+
+.tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 10px;
+  opacity: 0.7;
+  transition: all var(--anim-fast);
+  flex-shrink: 0;
+}
+
+.tab-close:hover {
+  background: rgba(255, 51, 102, 0.2);
+  color: var(--accent-rose);
+  opacity: 1;
+}
+
+.new-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--anim-fast);
+  flex-shrink: 0;
+}
+
+.new-tab-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.plus-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   3. Toolbar & Omnibox Row
+   ========================================================================== */
+
+#toolbar {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 8px;
+  gap: 8px;
+  background: var(--bg-surface);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all var(--anim-fast);
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#omnibox-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0 8px;
+  gap: 7px;
+  transition: all var(--anim-smooth);
+  position: relative;
+}
+
+#omnibox-wrap:focus-within {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2), inset 0 0 8px rgba(0, 240, 255, 0.05);
+}
+
+.cli-prompt {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.protocol-chip {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  background: rgba(0, 255, 157, 0.08);
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  color: var(--accent-green);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.protocol-chip.proto-local {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.25);
+  color: var(--accent-cyan);
+}
+
+.protocol-chip.proto-query {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: var(--accent-violet);
+}
+
+.protocol-chip.proto-insecure {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: var(--accent-amber);
+}
+
+#address {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.01em;
+}
+
+#address::placeholder {
+  color: var(--text-dim);
+  font-style: normal;
+}
+
+.omnibox-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tool-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--anim-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.tool-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.bookmark-star.bookmarked {
+  color: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.4);
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+.downloads-trigger {
+  position: relative;
+}
+
+.dl-badge {
+  background: var(--accent-cyan);
+  color: var(--bg-void);
+  font-size: 8px;
+  font-weight: 800;
+  padding: 0 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   4. Inline Find in Page [Ctrl+F] (Never clipped)
+   ========================================================================== */
+
+.find-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  animation: fade-in 0.15s ease-out;
+}
+
+.find-bar.hidden {
+  display: none;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.find-prompt {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  white-space: nowrap;
+}
+
+#find-input {
+  width: 140px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0 5px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+}
+
+#find-input:focus {
+  border-color: var(--accent-cyan);
+}
+
+.find-count {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-dim);
+  min-width: 44px;
+  text-align: center;
+}
+
+.find-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 10px;
+  transition: all var(--anim-fast);
+}
+
+.find-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.find-btn.find-close:hover {
+  background: rgba(255, 51, 102, 0.2);
+  color: var(--accent-rose);
+}
+
+/* ==========================================================================
+   5. Bookmarks Bar
+   ========================================================================== */
+
+.bookmarks-bar {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.bookmarks-bar::-webkit-scrollbar {
+  display: none;
+}
+.bookmarks-bar.hidden {
+  display: none;
+}
+
+.bookmarks-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bookmark-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font-size: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--anim-fast);
+}
+
+.bookmark-item:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+  color: var(--text-main);
+}
+
+.bookmark-item .bm-favicon {
+  width: 11px;
+  height: 11px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   6. Downloads Panel
+   ========================================================================== */
+
+.downloads-panel {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-cyan);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.downloads-panel.hidden {
+  display: none;
+}
+
+.downloads-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.panel-clear-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--anim-fast);
+}
+.panel-clear-btn:hover {
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+}
+
+.downloads-list {
+  padding: 6px 10px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  align-items: center;
+  height: 52px;
+}
+
+.dl-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  min-width: 180px;
+  max-width: 220px;
+}
+
+.dl-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.dl-name {
+  color: var(--text-main);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+.dl-status {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+.dl-status.progressing { color: var(--accent-cyan); }
+.dl-status.cancelled { color: var(--accent-rose); }
+
+.dl-progress-bar {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.dl-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
+  transition: width 0.2s linear;
+}
+
+.dl-item-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dl-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+.dl-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-cyan);
+}
+
+.dl-empty {
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   7. Fluid Laser Loading Progress Bar
+   ========================================================================== */
+
+.laser-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(0, 240, 255, 0.1);
+  z-index: 100;
+}
+
+.laser-progress.hidden {
+  display: none;
+}
+
+.laser-beam {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-cyan) 40%, var(--accent-violet) 70%, transparent 100%);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  animation: laser-sweep 1.2s infinite ease-in-out;
+}
+
+@keyframes laser-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

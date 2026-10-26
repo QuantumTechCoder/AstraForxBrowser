@@ -1,0 +1,89 @@
+{
+  "name": "astraforx",
+  "productName": "AstraForx",
+  "version": "1.0.0",
+  "description": "A lightning-fast, cybernetic, terminal-aesthetic desktop web browser built on Chromium & Electron.",
+  "main": "src/main/main.js",
+  "author": "QuantumTechCoder <quantumtechsperts@gmail.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuantumTechCoder/AstraForxBrowser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/QuantumTechCoder/AstraForxBrowser/issues"
+  },
+  "homepage": "https://github.com/QuantumTechCoder/AstraForxBrowser#readme",
+  "keywords": [
+    "browser",
+    "web-browser",
+    "electron",
+    "chromium",
+    "cyberpunk",
+    "terminal",
+    "hacker-aesthetic",
+    "privacy",
+    "incognito",
+    "dark-mode",
+    "void-runner",
+    "arcade",
+    "tui",
+    "fast-browser",
+    "windows",
+    "amd64"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "dist": "electron-builder --win zip --x64",
+    "pack": "electron-builder --dir --win --x64"
+  },
+  "build": {
+    "appId": "com.quantumtechcoder.astraforx",
+    "productName": "AstraForx",
+    "files": [
+      "src/**/*",
+      "build/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.7.6",
+    "electron-builder": "^24.13.3"
+  }
+}

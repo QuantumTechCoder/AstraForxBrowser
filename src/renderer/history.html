@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx History</title>
+    <link rel="stylesheet" href="history.css" />
+  </head>
+  <body>
+    <div id="history-app">
+      <header id="history-header">
+        <div class="brand">
+          <span class="icon">📜</span>
+          <span class="title">ASTRA<span class="dim">//</span><span class="cyan">HISTORY</span></span>
+        </div>
+        <div class="search-box">
+          <span class="prompt">❯</span>
+          <input type="text" id="history-search" placeholder="Search browsing history..." autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="actions">
+          <button id="btn-clear-history" class="tui-btn danger-btn">CLEAR ALL HISTORY</button>
+        </div>
+      </header>
+
+      <main id="history-main">
+        <div id="history-empty" class="history-empty hidden">// NO BROWSING HISTORY LOGGED</div>
+        <div id="history-list" class="history-list"></div>
+      </main>
+    </div>
+    <script src="history.js"></script>
+  </body>
+</html>

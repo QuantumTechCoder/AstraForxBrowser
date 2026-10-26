@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx Settings</title>
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <div id="settings-app">
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-sym">⬡</div>
+          <div class="brand-text">ASTRA<span class="dim">//</span><span class="cyan">SETTINGS</span></div>
+        </div>
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="appearance">
+            <span class="nav-icon">🎨</span> Appearance & Theme
+          </button>
+          <button class="nav-item" data-tab="search">
+            <span class="nav-icon">🔍</span> Search Engine
+          </button>
+          <button class="nav-item" data-tab="startup">
+            <span class="nav-icon">⚡</span> On Startup
+          </button>
+          <button class="nav-item" data-tab="privacy">
+            <span class="nav-icon">🛡️</span> Privacy & Security
+          </button>
+          <button class="nav-item" data-tab="downloads">
+            <span class="nav-icon">📥</span> Downloads
+          </button>
+          <button class="nav-item" data-tab="performance">
+            <span class="nav-icon">🚀</span> Performance & System
+          </button>
+          <button class="nav-item" data-tab="about">
+            <span class="nav-icon">ℹ️</span> About AstraForx
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main id="content">
+        <!-- Appearance -->
+        <section id="section-appearance" class="settings-section active">
+          <h2 class="section-title">// APPEARANCE & THEME</h2>
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Visual Theme Aesthetic</span>
+              <span class="setting-desc">Select the cybernetic visual color profile for UI surfaces and chrome.</span>
+            </div>
+            <select id="setting-theme" class="tui-select">
+              <option value="obsidian">Obsidian Void (Default Dark)</option>
+              <option value="cyberpunk">Cyberpunk Neon (Cyan & Violet)</option>
+              <option value="matrix">Matrix Terminal (Green Phosphor)</option>
+            </select>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Show Bookmarks Bar</span>
+              <span class="setting-desc">Keep bookmarks strip visible beneath the omnibox toolbar.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-bookmarks-bar" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Compact Mode</span>
+              <span class="setting-desc">Tighter tab and toolbar paddings for maximized web viewing area.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-compact" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Search Engine -->
+        <section id="section-search" class="settings-section">
+          <h2 class="section-title">// SEARCH ENGINE</h2>
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Default Search Engine</span>
+              <span class="setting-desc">Used when entering queries directly into the omnibox CLI prompt.</span>
+            </div>
+            <select id="setting-search-engine" class="tui-select">
+              <option value="google">Google</option>
+              <option value="duckduckgo">DuckDuckGo (Privacy)</option>
+              <option value="bing">Microsoft Bing</option>
+              <option value="brave">Brave Search</option>
+              <option value="ecosia">Ecosia</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Startup -->
+        <section id="section-startup" class="settings-section">
+          <h2 class="section-title">// ON STARTUP</h2>
+          <div class="setting-card-stack">
+            <label class="tui-radio">
+              <input type="radio" name="startup" value="newtab" id="startup-newtab" />
+              <span class="radio-label">Open the New Tab cybernetic workstation</span>
+            </label>
+            <label class="tui-radio">
+              <input type="radio" name="startup" value="continue" id="startup-continue" checked />
+              <span class="radio-label">Continue where you left off (Restore previous session & pinned tabs)</span>
+            </label>
+            <label class="tui-radio">
+              <input type="radio" name="startup" value="custom" id="startup-custom" />
+              <span class="radio-label">Open a specific page</span>
+            </label>
+            <div id="startup-custom-wrap" class="indent-box hidden">
+              <input type="text" id="setting-startup-url" class="tui-input" placeholder="https://example.com" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Privacy & Security -->
+        <section id="section-privacy" class="settings-section">
+          <h2 class="section-title">// PRIVACY & SECURITY</h2>
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Clear Browsing Data</span>
+              <span class="setting-desc">Purge browsing history, cookies, cache, and session buffers.</span>
+            </div>
+            <button id="btn-open-clear-data" class="tui-btn danger-btn">CLEAR DATA...</button>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">HTTPS-First Mode</span>
+              <span class="setting-desc">Automatically upgrades connections to HTTPS and warns on insecure HTTP.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-https-only" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Send "Do Not Track" Request</span>
+              <span class="setting-desc">Sends DNT=1 telemetry suppression header with web requests.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-do-not-track" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Downloads -->
+        <section id="section-downloads" class="settings-section">
+          <h2 class="section-title">// DOWNLOADS</h2>
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Default Download Directory</span>
+              <span id="download-dir-display" class="setting-desc">// default folder</span>
+            </div>
+            <button id="btn-change-download-dir" class="tui-btn">[CHANGE FOLDER]</button>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Ask where to save each file</span>
+              <span class="setting-desc">Prompt with native save dialog before initiating each download.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-ask-download" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Performance -->
+        <section id="section-performance" class="settings-section">
+          <h2 class="section-title">// PERFORMANCE & SYSTEM</h2>
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Hardware Acceleration</span>
+              <span class="setting-desc">Use GPU rasterization and zero-copy rendering for maximum page speed.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-hardware-accel" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="card-info">
+              <span class="setting-name">Memory Saver & Tab Sleeping</span>
+              <span class="setting-desc">Frees memory from inactive background tabs to keep active pages responsive.</span>
+            </div>
+            <label class="tui-toggle">
+              <input type="checkbox" id="setting-memory-saver" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section id="section-about" class="settings-section">
+          <h2 class="section-title">// ABOUT ASTRAFORX</h2>
+          <div class="about-card">
+            <div class="about-header">
+              <span class="about-title">ASTRA<span class="dim">//</span><span class="cyan">FORX BROWSER</span></span>
+              <span class="about-ver">v1.0.0 (Core Release)</span>
+            </div>
+            <p class="about-desc">
+              High-performance, keyboard-driven desktop web browser designed with cybernetic aesthetics,
+              instant command-matrix routing, and Chrome-grade web compatibility.
+            </p>
+            <div class="sys-specs">
+              <div class="spec-row"><span class="k">ENGINE:</span> <span class="v" id="spec-engine">Chromium / Blink</span></div>
+              <div class="spec-row"><span class="k">PLATFORM:</span> <span class="v" id="spec-platform">Windows x64</span></div>
+              <div class="spec-row"><span class="k">USER DATA:</span> <span class="v" id="spec-data">%APPDATA%\AstraForxBrowser</span></div>
+              <div class="spec-row"><span class="k">CACHE:</span> <span class="v">500MB Ultra-Speed Pipeline</span></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Clear Data Modal -->
+    <div id="clear-modal" class="modal-backdrop hidden">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span class="modal-title">// PURGE BROWSING DATA</span>
+          <button id="modal-close" class="modal-close-btn">&#x2715;</button>
+        </div>
+        <div class="modal-body">
+          <div class="time-range-row">
+            <label for="clear-timerange">Time range:</label>
+            <select id="clear-timerange" class="tui-select">
+              <option value="hour">Last hour</option>
+              <option value="24h">Last 24 hours</option>
+              <option value="7d">Last 7 days</option>
+              <option value="all" selected>All time</option>
+            </select>
+          </div>
+          <div class="clear-options">
+            <label class="tui-checkbox">
+              <input type="checkbox" id="clear-history" checked />
+              <span>Browsing history</span>
+            </label>
+            <label class="tui-checkbox">
+              <input type="checkbox" id="clear-cookies" checked />
+              <span>Cookies and other site data</span>
+            </label>
+            <label class="tui-checkbox">
+              <input type="checkbox" id="clear-cache" checked />
+              <span>Cached images and files</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btn-cancel-clear" class="tui-btn">CANCEL</button>
+          <button id="btn-confirm-clear" class="tui-btn danger-btn">PURGE DATA</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="settings.js"></script>
+  </body>
+</html>

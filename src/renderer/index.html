@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Top Titlebar: System Telemetry & Window Controls -->
+      <div id="titlebar">
+        <div id="brand-cluster">
+          <div class="astra-symbol">
+            <span class="core-dot"></span>
+            <span class="ring-pulse"></span>
+          </div>
+          <span class="brand-title">ASTRA<span class="brand-dim">//</span><span class="brand-accent">FORX</span></span>
+          <div class="telemetry-bar">
+            <span class="tui-pill tui-online"><span class="status-indicator"></span>SYS:ONLINE</span>
+            <span class="tui-pill" id="telemetry-tabs">[TABS: 01]</span>
+            <span class="tui-pill tui-eng">[ENG: CHROMIUM]</span>
+            <span class="tui-pill tui-incognito hidden" id="telemetry-incognito">🕶 INCOGNITO</span>
+          </div>
+        </div>
+
+        <div id="drag-region"></div>
+
+        <div id="win-controls">
+          <button id="win-min" class="win-btn" title="Minimize" tabindex="-1">
+            <span class="glyph">&#x2013;</span>
+          </button>
+          <button id="win-max" class="win-btn" title="Maximize" tabindex="-1">
+            <span class="glyph">&#x25A1;</span>
+          </button>
+          <button id="win-close" class="win-btn win-close" title="Close" tabindex="-1">
+            <span class="glyph">&#x2715;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabstrip Row -->
+      <div id="tabstrip-row">
+        <div id="tabstrip">
+          <div id="tabs"></div>
+          <button id="new-tab" class="tui-btn new-tab-btn" title="New Tab [Ctrl+T]">
+            <span class="plus-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation & Omnibox Row -->
+      <div id="toolbar">
+        <div class="nav-cluster">
+          <button id="nav-back" class="nav-btn" title="Back [Alt+Left]">
+            <span class="glyph">&#x2039;</span>
+          </button>
+          <button id="nav-forward" class="nav-btn" title="Forward [Alt+Right]">
+            <span class="glyph">&#x203A;</span>
+          </button>
+          <button id="nav-reload" class="nav-btn" title="Reload [Ctrl+R] / Hard [Ctrl+Shift+R]">
+            <span class="glyph">&#x21BB;</span>
+          </button>
+        </div>
+
+        <div id="omnibox-wrap">
+          <span class="cli-prompt">❯</span>
+          <span id="protocol-chip" class="protocol-chip">[HTTPS]</span>
+          <input
+            id="address"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Search query, command (gh:, so:, yt:) or enter URL..."
+          />
+          <div class="omnibox-actions">
+            <button id="bookmark-btn" class="tool-btn bookmark-star" title="Bookmark Page [Ctrl+D]">&#x2606;</button>
+            <button id="zoom-badge" class="tool-btn zoom-btn" title="Reset Zoom [Ctrl+0]">100%</button>
+            <button id="downloads-btn" class="tool-btn downloads-trigger" title="Downloads [Ctrl+J]">
+              <span class="dl-icon">&#x2913;</span>
+              <span id="dl-badge" class="dl-badge hidden">0</span>
+            </button>
+            <button id="bookmarks-toggle-btn" class="tool-btn" title="Toggle Bookmarks Bar [Ctrl+Shift+B]">&#x2630;</button>
+            <button id="devtools-btn" class="tool-btn" title="Toggle DevTools [F12]">&lt;/&gt;</button>
+            <button id="settings-btn" class="tool-btn" title="Settings [Ctrl+,]">&#x2699;</button>
+          </div>
+        </div>
+
+        <!-- Inline Find in Page [Ctrl+F] (inside visible toolbar, never cut off) -->
+        <div id="find-bar" class="find-bar hidden">
+          <span class="find-prompt">❯ FIND:</span>
+          <input id="find-input" type="text" placeholder="search in page..." autocomplete="off" spellcheck="false" />
+          <span id="find-count" class="find-count">[ 0/0 ]</span>
+          <button id="find-prev" class="find-btn" title="Previous [Shift+Enter]">&#x25B4;</button>
+          <button id="find-next" class="find-btn" title="Next [Enter]">&#x25BE;</button>
+          <button id="find-close" class="find-btn find-close" title="Close [Esc]">&#x2715;</button>
+        </div>
+      </div>
+
+      <!-- Bookmarks Bar (dynamically expands chrome height) -->
+      <div id="bookmarks-bar" class="bookmarks-bar hidden">
+        <div id="bookmarks-list" class="bookmarks-list"></div>
+      </div>
+
+      <!-- Downloads Row Panel (dynamically expands chrome height) -->
+      <div id="downloads-panel" class="downloads-panel hidden">
+        <div class="downloads-header">
+          <span class="header-title">DOWNLOADS // BUFFER</span>
+          <button id="downloads-clear" class="panel-clear-btn" title="Clear completed">[PURGE]</button>
+        </div>
+        <div id="downloads-list" class="downloads-list">
+          <div class="dl-empty">// NO ACTIVE DOWNLOADS</div>
+        </div>
+      </div>
+
+      <!-- Fluid Laser Loading Progress Bar -->
+      <div id="laser-progress" class="laser-progress hidden">
+        <div class="laser-beam"></div>
+      </div>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

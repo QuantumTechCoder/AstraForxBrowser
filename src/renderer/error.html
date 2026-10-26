@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx // Target Unreachable</title>
+    <link rel="stylesheet" href="error.css" />
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
+    <div id="error-app">
+      <!-- Background Cyber Grid & Radar -->
+      <div class="cyber-radar"></div>
+
+      <div class="error-container">
+        <!-- Top Status Glitch Header -->
+        <div class="error-header">
+          <div class="warning-icon">⚠</div>
+          <div class="status-title">// SIGNAL_SEVERED // TARGET_UNREACHABLE</div>
+        </div>
+
+        <!-- Cyber Minigame Section -->
+        <div id="game-wrapper">
+          <div id="game-launch-strip" class="game-launch-strip">
+            <div class="launch-left">
+              <span class="arcade-icon">🎮</span>
+              <span class="launch-title">ASTRA // VOID RUNNER</span>
+            </div>
+            <span class="launch-hint">[PRESS SPACE TO PLAY]</span>
+          </div>
+          <div id="game-container">
+            <canvas id="game-canvas"></canvas>
+            <div class="game-crt-overlay"></div>
+          </div>
+        </div>
+
+        <!-- Error Code Pill -->
+        <div class="code-pill" id="error-code-badge">
+          <span class="status-dot"></span>
+          <span id="error-code-text">ERR_NAME_NOT_RESOLVED</span>
+        </div>
+
+        <!-- Target URL Display -->
+        <div class="target-url-box">
+          <span class="url-label">TARGET:</span>
+          <span id="target-url-text" class="url-val">https://example.com</span>
+        </div>
+
+        <!-- Explanation Message -->
+        <div class="error-explanation">
+          <p id="error-summary-text" class="summary">
+            AstraForx was unable to establish a telemetry downlink with the remote host.
+          </p>
+          <div class="troubleshooting">
+            <span class="trouble-heading">// DIAGNOSTIC CHECKLIST:</span>
+            <ul id="trouble-list">
+              <li>Verify physical network cable or Wi-Fi uplink status.</li>
+              <li>Confirm spelling of destination hostname and protocol port.</li>
+              <li>Flush local DNS cache and verify gateway firewall rules.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Diagnostic Telemetry Card -->
+        <div class="telemetry-card">
+          <div class="telemetry-row">
+            <span class="tel-k">NET_STATUS:</span>
+            <span class="tel-v error-amber" id="tel-status">CONNECTION_DROPPED</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="tel-k">ERROR_CODE:</span>
+            <span class="tel-v" id="tel-code">-105 (ERR_NAME_NOT_RESOLVED)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="tel-k">TIMESTAMP:</span>
+            <span class="tel-v" id="tel-time">2026-09-27 20:25:00 UTC</span>
+          </div>
+        </div>
+
+        <!-- Interactive Action Buttons -->
+        <div class="action-row">
+          <button id="btn-retry" class="tui-btn retry-btn">⟳ RETRY CONNECTION</button>
+          <button id="btn-search" class="tui-btn search-btn">🔍 SEARCH QUERY</button>
+          <button id="btn-home" class="tui-btn home-btn">⚡ NEW TAB</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="error.js"></script>
+  </body>
+</html>

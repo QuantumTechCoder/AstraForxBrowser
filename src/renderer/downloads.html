@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx Downloads</title>
+    <link rel="stylesheet" href="history.css" />
+  </head>
+  <body>
+    <div id="history-app">
+      <header id="history-header">
+        <div class="brand">
+          <span class="icon">📥</span>
+          <span class="title">ASTRA<span class="dim">//</span><span class="cyan">DOWNLOADS</span></span>
+        </div>
+        <div class="actions">
+          <button id="btn-clear-dl" class="tui-btn danger-btn">CLEAR COMPLETED</button>
+        </div>
+      </header>
+
+      <main id="history-main">
+        <div id="dl-empty" class="history-empty">// NO ACTIVE OR RECENT DOWNLOADS</div>
+        <div id="dl-list" class="history-list"></div>
+      </main>
+    </div>
+    <script>
+      (function() {
+        const astra = window.astra || window.quantum;
+        const listEl = document.getElementById('dl-list');
+        const emptyEl = document.getElementById('dl-empty');
+        const clearBtn = document.getElementById('btn-clear-dl');
+
+        function render(downloads) {
+          listEl.innerHTML = '';
+          if (!downloads || downloads.length === 0) {
+            emptyEl.classList.remove('hidden');
+            return;
+          }
+          emptyEl.classList.add('hidden');
+          downloads.forEach(dl => {
+            const row = document.createElement('div');
+            row.className = 'history-item';
+            row.innerHTML = `
+              <div class="item-left">
+                <span style="color:var(--accent-cyan); font-weight:bold;">[${dl.state.toUpperCase()}]</span>
+                <span class="item-title">${dl.name}</span>
+                <span class="item-url">${dl.percent}%</span>
+              </div>
+            `;
+            if (dl.path) {
+              const btn = document.createElement('button');
+              btn.className = 'tui-btn';
+              btn.textContent = 'SHOW IN FOLDER';
+              btn.addEventListener('click', () => {
+                if (astra && astra.openDownloadItem) astra.openDownloadItem(dl.path);
+              });
+              row.appendChild(btn);
+            }
+            listEl.appendChild(row);
+          });
+        }
+
+        async function load() {
+          if (astra && astra.getDownloads) {
+            const dl = await astra.getDownloads();
+            render(dl);
+          }
+        }
+        if (astra && astra.onDownloadsUpdate) {
+          astra.onDownloadsUpdate(render);
+        }
+        if (clearBtn) {
+          clearBtn.addEventListener('click', async () => {
+            if (astra && astra.clearDownloads) await astra.clearDownloads();
+            load();
+          });
+        }
+        load();
+      })();
+    </script>
+  </body>
+</html>

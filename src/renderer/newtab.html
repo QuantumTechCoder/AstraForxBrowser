@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+  />
+  <title>AstraForx Workstation</title>
+  <link rel="stylesheet" href="newtab.css" />
+</head>
+<body>
+  <!-- Ambient Cosmic Grid & Laser Scanlines -->
+  <div id="cyber-grid">
+    <div class="grid-mesh"></div>
+    <div class="scanline"></div>
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+  </div>
+
+  <main id="tui-container">
+    <!-- Cybernetic Terminal Header -->
+    <header class="terminal-banner">
+      <div class="banner-top">
+        <span class="banner-tag">◈ ASTRAFORX WORKSTATION // v0.2.0</span>
+        <span class="banner-status"><span class="pulse-dot"></span>SYS_NOMINAL</span>
+      </div>
+      <pre class="ascii-art">
+  █████╗ ███████╗████████╗██████╗  █████╗ ███████╗ ██████╗ ██████╗ ██╗  ██╗
+ ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔═══██╗██╔══██╗╚██╗██╔╝
+ ███████║███████╗   ██║   ██████╔╝███████║█████╗  ██║   ██║██████╔╝ ╚███╔╝ 
+ ██╔══██║╚════██║   ██║   ██╔══██╗██╔══██║██╔══╝  ██║   ██║██╔══██╗ ██╔██╗ 
+ ██║  ██║███████║   ██║   ██║  ██║██║  ██║██║     ╚██████╔╝██║  ██║██╔╝ ██╗
+ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+      </pre>
+      <div class="telemetry-strip">
+        <div class="telemetry-node"><span class="label">ENGINE:</span> <span class="val">CHROMIUM / V8</span></div>
+        <div class="telemetry-node"><span class="label">SECURITY:</span> <span class="val green">ISOLATED / SANDBOX</span></div>
+        <div class="telemetry-node"><span class="label">SHELL:</span> <span class="val cyan">TERMINAL v1.0</span></div>
+        <div class="telemetry-node"><span class="label">NET:</span> <span class="val green">ESTABLISHED</span></div>
+      </div>
+    </header>
+
+    <!-- Terminal Prompt / Omnibox -->
+    <section class="prompt-section">
+      <form id="cli-form" autocomplete="off">
+        <div class="prompt-box">
+          <span class="prompt-symbol">astra@core:~$</span>
+          <input
+            id="cli-input"
+            type="text"
+            placeholder="enter query, command (gh:, so:, yt:) or destination URL..."
+            autofocus
+            spellcheck="false"
+          />
+          <button id="cli-submit" type="submit" title="Execute [Enter]">EXEC &#x21B5;</button>
+        </div>
+      </form>
+      <div class="syntax-pills">
+        <span class="pill-label">QUICK PREFIXES:</span>
+        <button class="syntax-pill" data-prefix="gh ">[gh: GitHub]</button>
+        <button class="syntax-pill" data-prefix="so ">[so: StackOverflow]</button>
+        <button class="syntax-pill" data-prefix="yt ">[yt: YouTube]</button>
+        <button class="syntax-pill" data-prefix="w ">[w: Wikipedia]</button>
+        <button class="syntax-pill" data-prefix="ddg ">[ddg: DuckDuckGo]</button>
+      </div>
+    </section>
+
+    <!-- Command Matrix (Speed Dials) -->
+    <section class="matrix-section">
+      <div class="section-header">
+        <span class="header-prefix">// 01</span>
+        <h2 class="header-title">COMMAND MATRIX [HOTKEYS 1-8]</h2>
+        <span class="header-line"></span>
+      </div>
+      <div class="matrix-grid">
+        <a class="matrix-card" data-key="1" data-url="https://github.com" href="https://github.com">
+          <div class="card-top">
+            <span class="card-key">[1]</span>
+            <span class="card-tag">DEV</span>
+          </div>
+          <div class="card-icon cyan">GH</div>
+          <div class="card-label">GitHub</div>
+          <div class="card-sub">github.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="2" data-url="https://stackoverflow.com" href="https://stackoverflow.com">
+          <div class="card-top">
+            <span class="card-key">[2]</span>
+            <span class="card-tag">DEV</span>
+          </div>
+          <div class="card-icon amber">SO</div>
+          <div class="card-label">Stack Overflow</div>
+          <div class="card-sub">stackoverflow.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="3" data-url="https://news.ycombinator.com" href="https://news.ycombinator.com">
+          <div class="card-top">
+            <span class="card-key">[3]</span>
+            <span class="card-tag">NEWS</span>
+          </div>
+          <div class="card-icon orange">HN</div>
+          <div class="card-label">Hacker News</div>
+          <div class="card-sub">ycombinator.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="4" data-url="https://www.reddit.com" href="https://www.reddit.com">
+          <div class="card-top">
+            <span class="card-key">[4]</span>
+            <span class="card-tag">COMM</span>
+          </div>
+          <div class="card-icon rose">RD</div>
+          <div class="card-label">Reddit</div>
+          <div class="card-sub">reddit.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="5" data-url="https://www.youtube.com" href="https://www.youtube.com">
+          <div class="card-top">
+            <span class="card-key">[5]</span>
+            <span class="card-tag">MEDIA</span>
+          </div>
+          <div class="card-icon red">YT</div>
+          <div class="card-label">YouTube</div>
+          <div class="card-sub">youtube.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="6" data-url="https://x.com" href="https://x.com">
+          <div class="card-top">
+            <span class="card-key">[6]</span>
+            <span class="card-tag">SOC</span>
+          </div>
+          <div class="card-icon cyan">X</div>
+          <div class="card-label">X / Twitter</div>
+          <div class="card-sub">x.com</div>
+        </a>
+
+        <a class="matrix-card" data-key="7" data-url="https://developer.mozilla.org" href="https://developer.mozilla.org">
+          <div class="card-top">
+            <span class="card-key">[7]</span>
+            <span class="card-tag">DOCS</span>
+          </div>
+          <div class="card-icon violet">MDN</div>
+          <div class="card-label">MDN Docs</div>
+          <div class="card-sub">mozilla.org</div>
+        </a>
+
+        <a class="matrix-card" data-key="8" data-url="https://chatgpt.com" href="https://chatgpt.com">
+          <div class="card-top">
+            <span class="card-key">[8]</span>
+            <span class="card-tag">AI</span>
+          </div>
+          <div class="card-icon green">GPT</div>
+          <div class="card-label">ChatGPT</div>
+          <div class="card-sub">chatgpt.com</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Terminal Access Log (Recent Sessions) -->
+    <section class="log-section">
+      <div class="section-header">
+        <span class="header-prefix">// 02</span>
+        <h2 class="header-title">TERMINAL ACCESS LOG</h2>
+        <span class="header-line"></span>
+        <button id="clear-log-btn" class="log-clear-btn" title="Clear Access Log">[PURGE LOG]</button>
+      </div>
+
+      <div class="log-table-container">
+        <div class="log-header-row">
+          <span class="col-time">TIMESTAMP</span>
+          <span class="col-status">STATE</span>
+          <span class="col-title">IDENTIFIER</span>
+          <span class="col-url">DESTINATION URI</span>
+        </div>
+        <div id="access-log" class="log-entries"></div>
+      </div>
+    </section>
+
+    <!-- System Footer -->
+    <footer class="terminal-footer">
+      <span class="foot-item">PRESS <kbd>/</kbd> TO FOCUS PROMPT</span>
+      <span class="foot-sep">•</span>
+      <span class="foot-item">PRESS <kbd>1-8</kbd> FOR QUICK LAUNCH</span>
+      <span class="foot-sep">•</span>
+      <span class="foot-item">PRESS <kbd>Ctrl+L</kbd> FOR OMNIBOX</span>
+      <span class="foot-sep">•</span>
+      <span class="foot-item">ASTRAFORX WORKSTATION READY</span>
+    </footer>
+  </main>
+
+  <script src="newtab.js"></script>
+</body>
+</html>

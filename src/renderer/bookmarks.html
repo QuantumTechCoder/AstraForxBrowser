@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; script-src 'self';"
+    />
+    <title>AstraForx Bookmarks</title>
+    <link rel="stylesheet" href="bookmarks.css" />
+  </head>
+  <body>
+    <div id="bm-app">
+      <header id="bm-header">
+        <div class="brand">
+          <span class="icon">⭐</span>
+          <span class="title">ASTRA<span class="dim">//</span><span class="cyan">BOOKMARKS</span></span>
+        </div>
+        <div class="search-box">
+          <span class="prompt">❯</span>
+          <input type="text" id="bm-search" placeholder="Search bookmarks..." autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="actions">
+          <button id="btn-add-bm" class="tui-btn">+ ADD BOOKMARK</button>
+        </div>
+      </header>
+
+      <main id="bm-main">
+        <div id="bm-empty" class="bm-empty hidden">// NO BOOKMARKS FOUND</div>
+        <div id="bm-list" class="bm-list"></div>
+      </main>
+    </div>
+
+    <!-- Add Bookmark Modal -->
+    <div id="bm-modal" class="modal-backdrop hidden">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span class="modal-title">// ADD NEW BOOKMARK</span>
+          <button id="bm-modal-close" class="modal-close-btn">&#x2715;</button>
+        </div>
+        <div class="modal-body">
+          <div class="field-row">
+            <label>Title</label>
+            <input type="text" id="modal-bm-title" class="tui-input" placeholder="Title" />
+          </div>
+          <div class="field-row">
+            <label>URL</label>
+            <input type="text" id="modal-bm-url" class="tui-input" placeholder="https://example.com" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="bm-modal-cancel" class="tui-btn">CANCEL</button>
+          <button id="bm-modal-save" class="tui-btn save-btn">SAVE</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="bookmarks.js"></script>
+  </body>
+</html>
